@@ -27,7 +27,6 @@ import {
   Typography,
 } from '@mochi-ui/core'
 import { LoginWidget, useLoginWidget } from '@mochi-web3/login-widget'
-import { Layout } from '@mochi-ui/layout'
 import { useState } from 'react'
 import { truncateWallet } from '@/utils'
 import { appVersion } from '@/constants'
@@ -97,6 +96,7 @@ export default function Home() {
                 <DropdownMenuItem
                   className="text-red-600"
                   leftIcon={<LogoutSolid className="text-red-600" />}
+                  onClick={() => logout()}
                 >
                   Logout
                 </DropdownMenuItem>
@@ -131,7 +131,6 @@ export default function Home() {
             <>
               <MobileNav
                 navItems={mobileNavItems}
-                /* className={isLoggedIn && profile ? '!hidden' : ''} */
                 login={
                   <Drawer anchor="bottom">
                     <DrawerTrigger asChild>
@@ -146,21 +145,13 @@ export default function Home() {
                   </Drawer>
                 }
               />
-              <DesktopNav
-                navItems={desktopNavItems}
-                className="relative z-10"
-                /* className={ */
-                /*   isLoggedIn && profile && window.innerWidth <= 1024 */
-                /*     ? '!flex' */
-                /*     : '' */
-                /* } */
-              />
+              <DesktopNav navItems={desktopNavItems} className="relative" />
             </>
           }
         />
       </header>
       <main className="flex flex-1 justify-center items-center">
-        <div className="flex flex-col gap-y-16 w-full max-w-4xl">
+        <div className="flex flex-col gap-y-16 py-20 w-full max-w-4xl">
           <SummaryStats />
           <Separator />
           <Vaults />
